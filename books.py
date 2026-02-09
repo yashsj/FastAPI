@@ -70,3 +70,10 @@ async def delete_book(book_title:str):
             del BOOKS[i]
             break
 
+@app.get("/books/get_author")
+async def read_author_and_title(author: str):
+    books_to_return = []
+    for book in BOOKS:
+        if (book.get("author").casefold() == author.casefold()):
+            books_to_return.append(book)
+    return books_to_return
